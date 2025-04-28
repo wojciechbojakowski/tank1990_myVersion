@@ -2,6 +2,9 @@
 
 **Tank 1990 DIY Version** is a simple clone of the classic game "Tank 1990," implemented in C++ using the SFML library. The game features tanks, enemies, various types of walls (brick, steel, water), and collision mechanics.
 
+[Some text about Tank 1990 but in Polish](https://www.gry-online.pl/newsroom/w-te-czolgi-gralismy-do-upadlego-na-dlugo-przed-world-of-tanks-ta/zf2d4b3)
+
+
 ## Description
 
 In this version of the game, you control a tank that moves around a map with randomly generated walls. The tank can shoot at enemies and collide with obstacles. The game features basic mechanics such as movement, shooting, and collisions.
