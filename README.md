@@ -42,7 +42,12 @@ In this version of the game, you control a tank that moves around a map with ran
      g++ -o tank_game main.cpp Map.cpp Tank.cpp Bullet.cpp Enemy.cpp Wall.cpp -lsfml-graphics -lsfml-window -lsfml-system
      ```
 
-4. **Run**:
+   Or you can use Makefile
+   ```bash
+   make
+   ```
+
+5. **Run**:
    - After compiling, run the game:
    
      ```bash
