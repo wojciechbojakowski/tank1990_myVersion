@@ -7,7 +7,7 @@
 class Map
 {
 public:
-    Map();
+    Map(bool flag);
     void draw(sf::RenderWindow &window);
     int getTile(int x, int y) const;
     void generate();

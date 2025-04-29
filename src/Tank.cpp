@@ -2,7 +2,7 @@
 
 Tank::Tank(float x, float y)
 {
-    shape.setSize(sf::Vector2f(40, 40));
+    shape.setSize(sf::Vector2f(20, 20));
     shape.setFillColor(sf::Color::Green);
     shape.setPosition(x, y);
 }

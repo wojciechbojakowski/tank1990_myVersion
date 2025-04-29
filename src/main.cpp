@@ -18,7 +18,7 @@ int main()
     // walls.emplace_back(380, 300);
 
     Tank playerTank(400, 500);
-    Map gameMap;
+    Map gameMap(false);
 
     gameMap.generateWalls(walls);
 

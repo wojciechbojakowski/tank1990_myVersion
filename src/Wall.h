@@ -13,4 +13,5 @@ public:
 private:
     sf::RectangleShape shape;
     Type type;
+    std::string huj ="huj";
 };
