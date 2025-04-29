@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet(float x, float y)
+Bullet::Bullet(float x, float y)//dodać kierunek co pozwoli strzelać w róźnych kierunkach
 {
     shape.setRadius(5);
     shape.setFillColor(sf::Color::Red);
@@ -8,9 +8,9 @@ Bullet::Bullet(float x, float y)
     alive = true;
 }
 
-void Bullet::update()
+void Bullet::update(float dt)
 {
-    shape.move(0, -10);
+    shape.move(0, -10*17*dt);
     if (shape.getPosition().y < 0)
         alive = false;
 }

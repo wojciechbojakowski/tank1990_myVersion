@@ -5,7 +5,7 @@ class Bullet
 {
 public:
     Bullet(float x, float y);
-    void update();
+    void update(float dt);
     void draw(sf::RenderWindow &window);
     bool isAlive() const;
     sf::CircleShape &getShape();

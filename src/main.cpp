@@ -20,6 +20,8 @@ int main()
     Tank playerTank(400, 500);
     Map gameMap;
 
+    gameMap.generateWalls(walls);
+
     std::vector<Enemy> enemies;
     enemies.emplace_back(100, 100);
     enemies.emplace_back(600, 100);
@@ -61,7 +63,7 @@ int main()
         // Update bullets
         for (auto &bullet : bullets)
         {
-            bullet.update();
+            bullet.update(dt);
             for (auto &wall : walls)
             {
                 if (bullet.getShape().getGlobalBounds().intersects(wall.getShape().getGlobalBounds()))
@@ -72,7 +74,7 @@ int main()
         }
 
         for (auto &enemy : enemies)
-            enemy.update(dt);
+            enemy.update(dt,walls);
 
         // Remove bullets out of screen
         bullets.erase(std::remove_if(bullets.begin(), bullets.end(),

@@ -12,7 +12,7 @@ Enemy::Enemy(float x, float y)
     direction = sf::Vector2f(0, 1); // start w dół
 }
 
-void Enemy::update(float dt)
+void Enemy::update(float dt,  std::list<Wall> &walls)
 {
     shape.move(direction * 80.f * dt);
 
@@ -28,6 +28,23 @@ void Enemy::update(float dt)
             case 3: direction = sf::Vector2f(1, 0); break;  // prawo
         }
         changeDirClock.restart();
+    }
+
+    sf::Vector2f pos = shape.getPosition();
+    
+    if (pos.x < 0) shape.setPosition(0, pos.y);
+    if (pos.y < 0) shape.setPosition(pos.x, 0);
+    if (pos.x + shape.getSize().x > 800) shape.setPosition(800 - shape.getSize().x, pos.y);
+    if (pos.y + shape.getSize().y > 600) shape.setPosition(pos.x, 600 - shape.getSize().y);
+
+    for (Wall &wall : walls)
+    {
+        if (shape.getGlobalBounds().intersects(wall.getShape().getGlobalBounds()))
+        {
+            // Cofnij ruch w przypadku kolizji
+            // ech mnożenie wektorów do zrobienia
+            break;
+        }
     }
 }
 
