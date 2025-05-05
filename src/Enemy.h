@@ -9,9 +9,12 @@ public:
     Enemy(float x, float y);
     void update(float dt,  std::list<Wall> &walls);
     void draw(sf::RenderWindow &window);
+    void kill();
+    bool isAlive();
     sf::RectangleShape &getShape();
 private:
     sf::RectangleShape shape;
     sf::Vector2f direction;
     sf::Clock changeDirClock;
+    bool alive;
 };

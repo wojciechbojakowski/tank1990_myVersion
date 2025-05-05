@@ -6,6 +6,7 @@
 #include <vector>
 #include "Map.h"
 #include "Enemy.h"
+#include <iostream>
 
 int main()
 {
@@ -52,10 +53,28 @@ int main()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
             playerTank.move(0, 1, walls,dt);
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+            playerTank.move(-1, 0, walls,dt);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+            playerTank.move(1, 0, walls,dt);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+            playerTank.move(0, -1, walls,dt);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+            playerTank.move(0, 1, walls,dt);
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             if (clock.getElapsedTime().asMilliseconds() > 300) { // cooldown
                 bullets.push_back(playerTank.shoot());
+                clock.restart();
+            }
+        }
+
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+        {
+            if (clock.getElapsedTime().asMilliseconds() > 300) { // cooldown
+                auto pos = sf::Mouse::getPosition(window);
+                bullets.push_back(playerTank.shootWithMouse(pos.x,pos.y));
                 clock.restart();
             }
         }
@@ -71,6 +90,14 @@ int main()
                     bullet.kill(); // zabij pocisk
                 }
             }
+            for (auto &enemy : enemies)
+            {
+                if (bullet.getShape().getGlobalBounds().intersects(enemy.getShape().getGlobalBounds()))
+                {
+                    bullet.kill(); // zabij pocisk
+                    enemy.kill();
+                }
+            }
         }
 
         for (auto &enemy : enemies)
@@ -79,6 +106,9 @@ int main()
         // Remove bullets out of screen
         bullets.erase(std::remove_if(bullets.begin(), bullets.end(),
             [](Bullet &b) { return !b.isAlive(); }), bullets.end());
+
+        enemies.erase(std::remove_if(enemies.begin(), enemies.end(),
+            [](Enemy &b) { return !b.isAlive(); }), enemies.end());    
 
         // Render
         window.clear();

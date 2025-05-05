@@ -12,6 +12,7 @@ public:
     void draw(sf::RenderWindow &window);
     void move(float dx, float dy, std::list<Wall> &walls, float dt);
     Bullet shoot();
+    Bullet shootWithMouse(float dx, float dy);
 private:
     sf::RectangleShape shape;
 };

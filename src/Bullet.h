@@ -5,6 +5,7 @@ class Bullet
 {
 public:
     Bullet(float x, float y);
+    Bullet(float x, float y, float dx, float dy);
     void update(float dt);
     void draw(sf::RenderWindow &window);
     bool isAlive() const;
@@ -13,4 +14,6 @@ public:
 private:
     sf::CircleShape shape;
     bool alive;
+    float directX;
+    float directY;
 };

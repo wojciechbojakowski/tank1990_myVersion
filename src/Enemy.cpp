@@ -7,7 +7,7 @@ Enemy::Enemy(float x, float y)
     shape.setSize(sf::Vector2f(40, 40));
     shape.setFillColor(sf::Color::Yellow);
     shape.setPosition(x, y);
-
+    this->alive=true;
     std::srand(static_cast<unsigned>(std::time(nullptr)));
     direction = sf::Vector2f(0, 1); // start w dół
 }
@@ -43,9 +43,18 @@ void Enemy::update(float dt,  std::list<Wall> &walls)
         {
             // Cofnij ruch w przypadku kolizji
             // ech mnożenie wektorów do zrobienia
+            shape.move(-direction * 80.f * dt);
             break;
         }
     }
+}
+
+void Enemy::kill(){
+    this->alive=false;
+}
+
+bool Enemy::isAlive(){
+    return this->alive;
 }
 
 void Enemy::draw(sf::RenderWindow &window)
